@@ -5,12 +5,15 @@ import videoReducer from './slices/videoSlice';
 import commentReducer from './slices/commentSlice';
 import themeReducer from './slices/themeSlice';
 
+import luluReducer from './slices/luluvidSlice';
+
 const store = configureStore({
   reducer: {
     auth: authReducer,
     video: videoReducer,
     comment: commentReducer,
     theme: themeReducer,
+    luluvideo:luluReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

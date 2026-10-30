@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, MoreVertical, Clock, Share2, ListPlus } from 'lucide-react';
 import { formatDistanceToNow } from '../utils/helpers';
+import { API_URL } from '../config';
 
 const VideoCard = ({ video }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const {
-    video_id,
+    id,
     title,
     thumbnail_url,
     username,
@@ -38,7 +39,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <div className="group cursor-pointer">
-      <Link to={`/watch/${video_id}`} className="block">
+      <Link to={`/watch/${id}`} className="block">
         {/* Thumbnail */}
         <div className="relative overflow-hidden rounded-2xl mb-3 bg-gray-200 dark:bg-gray-800">
           {/* Skeleton Loader */}
@@ -47,7 +48,7 @@ const VideoCard = ({ video }) => {
           )}
           
           <img
-            src={thumbnail_url || 'https://placehold.co/600x400'}
+            src={API_URL+ thumbnail_url || 'https://placehold.co/600x400'}
             alt={title}
             className={`w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -120,7 +121,7 @@ const VideoCard = ({ video }) => {
                 e.preventDefault();
                 setShowMenu(!showMenu);
               }}
-              className="p-2 opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all"
+              className="p-2 opacity-0 group-hover:opacity-100 hover:bg-gray-600 dark:hover:bg-gray-800 rounded-full transition-all"
             >
               <MoreVertical className="w-4 h-4 text-gray-600 dark:text-gray-400" />
             </button>

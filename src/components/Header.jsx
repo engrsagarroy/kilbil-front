@@ -1,8 +1,8 @@
 // src/components/Header.jsx - Professional Header Component with Theme Toggle
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Menu, Search, Video, Upload, Bell, User, LogOut, Moon, Sun, Settings, History, Clock } from 'lucide-react';
+import { Menu, Search, Upload, Bell, User, LogOut, Moon, Sun, Settings, History, Clock } from 'lucide-react';
 import { logout } from '../redux/slices/authSlice';
 import { toggleTheme } from '../redux/slices/themeSlice';
 import Logo from './logo';
@@ -50,7 +50,7 @@ const Header = ({ onToggleSidebar }) => {
         <div className="flex items-center gap-4">
           <button
             onClick={onToggleSidebar}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-600 dark:hover:bg-gray-800 rounded-full transition-colors"
             aria-label="Toggle sidebar"
           >
             <Menu className="w-6 h-6 text-gray-700 dark:text-gray-200" />
@@ -81,7 +81,7 @@ const Header = ({ onToggleSidebar }) => {
               />
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors border-l border-gray-300 dark:border-gray-700"
+                className="px-6 py-2.5 bg-gray-600 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors border-l border-gray-300 dark:border-gray-700"
                 aria-label="Search"
               >
                 <Search className="w-5 h-5 text-gray-600 dark:text-gray-300" />
@@ -95,7 +95,7 @@ const Header = ({ onToggleSidebar }) => {
           {/* Theme Toggle */}
           <button
             onClick={handleThemeToggle}
-            className="p-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+            className="p-2.5 hover:bg-gray-600 dark:hover:bg-gray-800 rounded-full transition-colors"
             aria-label="Toggle theme"
           >
             {mode === 'dark' ? (
@@ -120,7 +120,7 @@ const Header = ({ onToggleSidebar }) => {
               {/* Mobile Upload */}
               <Link
                 to="/upload"
-                className="sm:hidden p-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+                className="sm:hidden p-2.5 hover:bg-gray-600 dark:hover:bg-gray-800 rounded-full transition-colors"
               >
                 <Upload className="w-5 h-5 text-gray-700 dark:text-gray-200" />
               </Link>
@@ -129,7 +129,7 @@ const Header = ({ onToggleSidebar }) => {
               <div className="relative">
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors relative"
+                  className="p-2.5 hover:bg-gray-600 dark:hover:bg-gray-800 rounded-full transition-colors relative"
                   aria-label="Notifications"
                 >
                   <Bell className="w-5 h-5 text-gray-700 dark:text-gray-200" />

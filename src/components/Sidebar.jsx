@@ -59,7 +59,7 @@ const Sidebar = ({ isOpen }) => {
                 className={`group relative flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 ${
                   active
                     ? 'bg-gradient-to-r ' + item.gradient + ' text-white shadow-lg'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-600 dark:hover:bg-gray-800'
                 }`}
               >
                 <Icon className={`w-5 h-5 ${active ? 'animate-pulse' : ''}`} />
@@ -90,7 +90,7 @@ const Sidebar = ({ isOpen }) => {
                     to={item.path}
                     className={`flex items-center gap-4 px-4 py-2.5 rounded-xl transition-colors ${
                       active
-                        ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white font-medium'
+                        ? 'bg-gray-600 dark:bg-gray-800 text-gray-900 dark:text-white font-medium'
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                     }`}
                   >
@@ -112,7 +112,7 @@ const Sidebar = ({ isOpen }) => {
                 {subscriptions.map((sub) => (
                   <button
                     key={sub.name}
-                    className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+                    className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-600 dark:hover:bg-gray-800 transition-colors group"
                   >
                     <div className={`relative w-7 h-7 rounded-full bg-gradient-to-br ${sub.avatar} flex-shrink-0 ring-2 ring-white dark:ring-gray-900`}>
                       <div className="absolute inset-0 rounded-full bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -142,7 +142,7 @@ const Sidebar = ({ isOpen }) => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="flex items-center gap-4 px-4 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+                  className="flex items-center gap-4 px-4 py-2.5 rounded-xl hover:bg-gray-600 dark:hover:bg-gray-800 transition-colors group"
                 >
                   <Icon className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
                   <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white font-medium transition-colors">

@@ -98,7 +98,7 @@ const Channel = () => {
               onClick={handleSubscribe}
               className={`px-6 py-2 rounded-full font-semibold transition ${
                 isSubscribed
-                  ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-gray-200  dark:bg-gray-600 text-gray-700 hover:bg-gray-300'
                   : 'bg-black text-white hover:bg-gray-800'
               }`}
             >
@@ -111,7 +111,7 @@ const Channel = () => {
                 'Subscribe'
               )}
             </button>
-            <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition">
+            <button className="p-2 rounded-full bg-gray-200  dark:bg-gray-600 hover:bg-gray-300 transition">
               <Share2 className="w-5 h-5" />
             </button>
           </div>

@@ -2,7 +2,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+import { API_URL } from '../../config';
+
+const API = API_URL + '/api'
 
 // Get auth token
 const getAuthHeaders = () => {
@@ -15,7 +17,7 @@ export const fetchComments = createAsyncThunk(
   'comment/fetchComments',
   async (videoId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/videos/${videoId}/comments`);
+      const response = await axios.get(`${API}/videos/${videoId}/comments`);
       return { videoId, comments: response.data };
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -28,7 +30,7 @@ export const addComment = createAsyncThunk(
   async ({ videoId, text }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${API_URL}/videos/${videoId}/comments`,
+        `${API}/videos/${videoId}/comments`,
         { text },
         { headers: getAuthHeaders() }
       );
@@ -43,7 +45,7 @@ export const deleteComment = createAsyncThunk(
   'comment/deleteComment',
   async ({ commentId, videoId }, { rejectWithValue }) => {
     try {
-      await axios.delete(`${API_URL}/comments/${commentId}`, {
+      await axios.delete(`${API}/comments/${commentId}`, {
         headers: getAuthHeaders(),
       });
       return { commentId, videoId };

@@ -6,6 +6,7 @@ import { ThumbsUp, ThumbsDown, Share2, MoreHorizontal } from 'lucide-react';
 import { fetchVideoById, likeVideo, removeLike } from '../redux/slices/videoSlice';
 import { fetchComments, addComment } from '../redux/slices/commentSlice';
 import CommentList from '../components/CommentList';
+import { API_URL } from '../config';
 
 const VideoPlayer = () => {
   const { id } = useParams();
@@ -86,6 +87,9 @@ const VideoPlayer = () => {
   const isLiked = likedVideos.includes(parseInt(id));
   const isDisliked = dislikedVideos.includes(parseInt(id));
 
+
+  console.log("video url", currentVideo.thumbnail_url);
+
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -96,11 +100,17 @@ const VideoPlayer = () => {
             <video
               controls
               className="w-full h-full"
-              src={currentVideo.video_url}
-              poster={currentVideo.thumbnail_url}
+              src={API_URL  + currentVideo.video_url}
+              poster={API_URL  + currentVideo.thumbnail_url}
             >
               Your browser does not support the video tag.
             </video>
+
+            <img src={API_URL  + currentVideo.thumbnail_url} />
+
+
+
+
           </div>
 
           {/* Video Info */}
@@ -130,12 +140,11 @@ const VideoPlayer = () => {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-2">
-                <div className="flex items-center bg-gray-100 rounded-full overflow-hidden">
+                <div className="flex items-center bg-gray-600 rounded-full overflow-hidden">
                   <button
                     onClick={handleLike}
-                    className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-200 transition ${
-                      isLiked ? 'text-blue-600' : ''
-                    }`}
+                    className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-200 transition ${isLiked ? 'text-blue-600' : ''
+                      }`}
                   >
                     <ThumbsUp className="w-5 h-5" fill={isLiked ? 'currentColor' : 'none'} />
                     <span className="font-semibold">
@@ -145,27 +154,26 @@ const VideoPlayer = () => {
                   <div className="w-px h-6 bg-gray-300"></div>
                   <button
                     onClick={handleDislike}
-                    className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-200 transition ${
-                      isDisliked ? 'text-red-600' : ''
-                    }`}
+                    className={`flex items-center gap-2 px-4 py-2 hover:bg-gray-200 transition ${isDisliked ? 'text-red-600' : ''
+                      }`}
                   >
                     <ThumbsDown className="w-5 h-5" fill={isDisliked ? 'currentColor' : 'none'} />
                   </button>
                 </div>
 
-                <button className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-gray-200 transition">
+                <button className="flex items-center gap-2 bg-gray-600 px-4 py-2 rounded-full hover:bg-gray-200 transition">
                   <Share2 className="w-5 h-5" />
                   <span className="font-semibold">Share</span>
                 </button>
 
-                <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                <button className="p-2 bg-gray-600 rounded-full hover:bg-gray-200 transition">
                   <MoreHorizontal className="w-5 h-5" />
                 </button>
               </div>
             </div>
 
             {/* Description */}
-            <div className="mt-4 bg-gray-100 p-4 rounded-lg">
+            <div className="mt-4 bg-gray-600 p-4 rounded-lg">
               <p className="font-semibold">
                 {formatViews(currentVideo.views)} views • {new Date(currentVideo.created_at).toLocaleDateString()}
               </p>
@@ -202,7 +210,7 @@ const VideoPlayer = () => {
                   <div className="flex justify-end gap-2 mt-2">
                     <button
                       onClick={() => setCommentText('')}
-                      className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded transition"
+                      className="px-4 py-2 text-gray-600 hover:bg-gray-600 rounded transition"
                     >
                       Cancel
                     </button>

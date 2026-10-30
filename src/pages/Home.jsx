@@ -2,12 +2,27 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVideos } from '../redux/slices/videoSlice';
+
+
+import { fetchLuluVideos } from '../redux/slices/luluvidSlice';
+
+
 import VideoCard from '../components/VideoCard';
 import { Sparkles } from 'lucide-react';
+
+import { API_URL } from '../config';
+import LuluVideoCard from '../components/LuluVideoCard';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { videos, loading, error } = useSelector((state) => state.video);
+
+  const { luluVideos, lloading, lerror } = useSelector((state) => state.luluvideo);
+
+
+
+
+
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
@@ -25,12 +40,23 @@ const Home = () => {
     // { id: 'travel', label: 'Travel', icon: '✈️' },
   ];
 
+
   useEffect(() => {
-    dispatch(fetchVideos({ 
+    dispatch(fetchVideos({
       category: selectedCategory === 'all' ? '' : selectedCategory,
-      limit: 20 
+      limit: 20
     }));
   }, [dispatch, selectedCategory]);
+
+
+  useEffect(() => {
+    dispatch(fetchLuluVideos({
+      category: selectedCategory === 'all' ? '' : selectedCategory,
+      limit: 20
+    }));
+  }, [dispatch, selectedCategory]);
+
+
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -68,15 +94,14 @@ const Home = () => {
       {/* Category Filter */}
       <div className="sticky top-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-30 transition-colors duration-200">
         <div className="flex gap-3 px-6 py-4 overflow-x-auto scrollbar-hide">
-          {categories.map((category) => (
+          {categories.map((category , index ) => (
             <button
-              key={category.id}
+              key={index}
               onClick={() => handleCategoryChange(category.id)}
-              className={`group flex items-center gap-2 px-5 py-2.5 rounded-full whitespace-nowrap font-medium transition-all duration-200 ${
-                selectedCategory === category.id
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
-                  : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-              }`}
+              className={`group flex items-center gap-2 px-5 py-2.5 rounded-full whitespace-nowrap font-medium transition-all duration-200 ${selectedCategory === category.id
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
+                : 'bg-gray-600 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                }`}
             >
               <span className="text-lg">{category.icon}</span>
               <span>{category.label}</span>
@@ -112,10 +137,10 @@ const Home = () => {
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Trending Now</h2>
                 </div>
-                
+
                 <div className="relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl">
                   <img
-                    src={videos[0].thumbnail_url}
+                    src={API_URL + videos[0].thumbnail_url || 'https://placehold.co/600x400'}
                     alt={videos[0].title}
                     className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -141,9 +166,16 @@ const Home = () => {
               <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                 {selectedCategory === 'all' ? 'Recommended' : `${categories.find(c => c.id === selectedCategory)?.label} Videos`}
               </h2>
+
+              {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                {luluVideos.map((video, ind1) => (
+                  <LuluVideoCard key={ind1} video={video} />
+                ))}
+              </div> */}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-                {videos.map((video) => (
-                  <VideoCard key={video.video_id} video={video} />
+                {videos.map((video, ind2) => (
+                  <VideoCard key={ind2} video={video} />
                 ))}
               </div>
             </div>
@@ -159,6 +191,8 @@ const Home = () => {
           </>
         )}
       </div>
+
+
     </div>
   );
 };

@@ -124,7 +124,7 @@ const Upload = () => {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Video Upload */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <Video className="w-6 h-6" />
             Video File
@@ -167,7 +167,7 @@ const Upload = () => {
         </div>
 
         {/* Thumbnail Upload */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <Image className="w-6 h-6" />
             Thumbnail
@@ -210,7 +210,7 @@ const Upload = () => {
         </div>
 
         {/* Video Details */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold mb-4">Video Details</h2>
 
           <div className="space-y-4">
@@ -278,12 +278,12 @@ const Upload = () => {
 
         {/* Upload Progress */}
         {loading && uploadProgress > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-semibold">Uploading...</span>
               <span className="text-sm font-semibold">{uploadProgress}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-gray-200  dark:bg-gray-600 rounded-full h-2">
               <div
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${uploadProgress}%` }}

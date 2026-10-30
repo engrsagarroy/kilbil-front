@@ -2,7 +2,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+
+
+
+import { API_URL } from '../../config';
+
+const API = API_URL + '/api'
 
 // Get auth token
 const getAuthHeaders = () => {
@@ -15,10 +20,11 @@ export const fetchVideos = createAsyncThunk(
   'video/fetchVideos',
   async ({ search = '', category = '', limit = 20, offset = 0 }, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/videos`, {
+      const response = await axios.get(`${API}/videos`, {
         params: { search, category, limit, offset },
       });
-      return response.data;
+      //console.log("response", response);
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -29,7 +35,7 @@ export const fetchVideoById = createAsyncThunk(
   'video/fetchVideoById',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/videos/${id}`);
+      const response = await axios.get(`${API}/videos/${id}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -41,7 +47,7 @@ export const uploadVideo = createAsyncThunk(
   'video/uploadVideo',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/videos/upload`, formData, {
+      const response = await axios.post(`${API}/videos/upload`, formData, {
         headers: {
           ...getAuthHeaders(),
           'Content-Type': 'multipart/form-data',
@@ -59,7 +65,7 @@ export const likeVideo = createAsyncThunk(
   async ({ videoId, type }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${API_URL}/videos/${videoId}/like`,
+        `${API}/videos/${videoId}/like`,
         { type },
         { headers: getAuthHeaders() }
       );
@@ -74,7 +80,7 @@ export const removeLike = createAsyncThunk(
   'video/removeLike',
   async (videoId, { rejectWithValue }) => {
     try {
-      await axios.delete(`${API_URL}/videos/${videoId}/like`, {
+      await axios.delete(`${API}/videos/${videoId}/like`, {
         headers: getAuthHeaders(),
       });
       return videoId;

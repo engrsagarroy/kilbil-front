@@ -64,14 +64,14 @@ const CommentList = ({ videoId }) => {
 
                 {/* Comment Actions */}
                 <div className="flex items-center gap-4 mt-2">
-                  <button className="flex items-center gap-1 text-sm hover:bg-gray-100 p-1 rounded transition">
+                  <button className="flex items-center gap-1 text-sm hover:bg-gray-600 p-1 rounded transition">
                     <ThumbsUp className="w-4 h-4" />
                     <span>{comment.likes_count || 0}</span>
                   </button>
-                  <button className="flex items-center gap-1 text-sm hover:bg-gray-100 p-1 rounded transition">
+                  <button className="flex items-center gap-1 text-sm hover:bg-gray-600 p-1 rounded transition">
                     <ThumbsDown className="w-4 h-4" />
                   </button>
-                  <button className="text-sm font-semibold hover:bg-gray-100 px-2 py-1 rounded transition">
+                  <button className="text-sm font-semibold hover:bg-gray-600 px-2 py-1 rounded transition">
                     Reply
                   </button>
 
